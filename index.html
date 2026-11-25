@@ -39,7 +39,7 @@ const { rb, esc, fill, detect, loadAll, langSelect, apply, fillText, locale } = 
 let lang = detect();
 async function render() {
   const [U] = await loadAll(["assets/i18n"], lang);
-  apply(lang); fillText(U.ui); document.getElementById("maplink").href=`map.html`; document.title = AI.plain(U.ui.siteTitle);
+  apply(lang); fillText(U.ui); document.getElementById("maplink").href=`map.html?lang=${lang}`; document.title = AI.plain(U.ui.siteTitle);
   const items = [];
   SCHEDULE.forEach((s, j) => {
     if (s.breakBefore) items.push(`<li class="brk"><span class="dot"></span><div class="st">${rb(U.ui.winterBreak)}</div></li>`);
