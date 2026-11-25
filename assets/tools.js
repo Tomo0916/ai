@@ -113,7 +113,165 @@ window.Tools = (function () {
     draw();
   }
 
-  const all = { binary, text, pixel, color, wave };
+  /* ---------- character encodings ---------- */
+  const hex2 = n => n.toString(16).toUpperCase().padStart(2, "0");
+  const bin8 = n => n.toString(2).padStart(8, "0");
+  /* Reverse tables (character -> bytes) built once from the browser's own decoders. */
+  const REV = {};
+  function buildRev(label) {
+    if (REV[label]) return REV[label];
+    const m = new Map();
+    let dec;
+    try { dec = new TextDecoder(label, { fatal: true }); } catch (e) { REV[label] = m; return m; }
+    const put = bytes => {
+      let s;
+      try { s = dec.decode(new Uint8Array(bytes)); } catch (e) { return; }
+      if (!s || s.includes("�") || Array.from(s).length !== 1) return;
+      if (!m.has(s)) m.set(s, bytes);
+    };
+    const single = label === "windows-1252" ? [0, 255] : [0, 0x7f];
+    for (let b = single[0]; b <= single[1]; b++) put([b]);
+    const two = { shift_jis: [[0x81, 0x9f], [0xe0, 0xfc], [0x40, 0xfc]], "euc-jp": [[0xa1, 0xfe], null, [0xa1, 0xfe]], gbk: [[0x81, 0xfe], null, [0x40, 0xfe]], big5: [[0x81, 0xfe], null, [0x40, 0xfe]] }[label];
+    if (label === "shift_jis") for (let b = 0xa1; b <= 0xdf; b++) put([b]);
+    if (label === "euc-jp") for (let b = 0xa1; b <= 0xdf; b++) put([0x8e, b]);
+    if (two) {
+      const leads = [two[0], two[1]].filter(Boolean);
+      for (const [a, z] of leads) for (let l = a; l <= z; l++) for (let t = two[2][0]; t <= two[2][1]; t++) put([l, t]);
+    }
+    REV[label] = m;
+    return m;
+  }
+  const ENCS = [
+    { id: "ascii", name: "ASCII", lab: "encEn", enc: ch => { const c = ch.codePointAt(0); return c < 128 ? [c] : null; } },
+    { id: "windows-1252", name: "Latin-1 (Windows-1252)", lab: "encWest" },
+    { id: "shift_jis", name: "Shift_JIS", lab: "encJa" },
+    { id: "euc-jp", name: "EUC-JP", lab: "encJa" },
+    { id: "gbk", name: "GBK", lab: "encZhS" },
+    { id: "big5", name: "Big5", lab: "encZhT" },
+    { id: "utf-8", name: "UTF-8", lab: "encWorld", enc: ch => [...new TextEncoder().encode(ch)] },
+    { id: "utf-16be", name: "UTF-16", lab: "encWorld", enc: ch => { const o = []; for (let i = 0; i < ch.length; i++) { const u = ch.charCodeAt(i); o.push(u >> 8, u & 255); } return o; } },
+    { id: "utf-32", name: "UTF-32", lab: "encWorld", enc: ch => { const c = ch.codePointAt(0); return [(c >>> 24) & 255, (c >> 16) & 255, (c >> 8) & 255, c & 255]; } }
+  ];
+  function encodeChar(e, ch) { if (e.enc) return e.enc(ch); const b = buildRev(e.id).get(ch); return b ? b.slice() : null; }
+
+  function enc(el, u) {
+    const presets = ["A", "é", "あ", "漢", "中", "क", "ক", "ක", "က", "ệ", "😀"];
+    el.innerHTML = `<h3>${rb(u.encTitle)}</h3><p class="help">${rb(u.encHelp)}</p>
+      <div class="chips">${presets.map(p => `<button type="button" class="chip" data-c="${esc(p)}">${esc(p)}</button>`).join("")}</div>
+      <input type="text" class="o-in" value="あ" aria-label="text" style="width:100%;margin-top:8px">
+      <div class="o-out"></div>`;
+    const inp = el.querySelector(".o-in"), out = el.querySelector(".o-out");
+    const draw = () => {
+      const chars = Array.from(inp.value).slice(0, 4);
+      out.innerHTML = chars.map(ch => {
+        const cp = ch.codePointAt(0);
+        const rows = ENCS.map(e => {
+          const b = encodeChar(e, ch);
+          if (!b) return `<tr class="no"><th>${esc(e.name)}<span>${rb(u[e.lab])}</span></th><td colspan="2">✕ ${rb(u.encNo)}</td></tr>`;
+          const num = b.reduce((a, x) => a * 256 + x, 0);
+          return `<tr><th>${esc(e.name)}<span>${rb(u[e.lab])}</span></th><td><code class="hx">${b.map(hex2).join(" ")}</code><br><span class="note">${esc(fill(u.txtN, { n: b.length }))} · ${num}</span></td><td><code>${b.map(bin8).join(" ")}</code></td></tr>`;
+        }).join("");
+        return `<div class="enccard"><div class="encch">${esc(ch === " " ? "␣" : ch)}<span>Unicode U+${cp.toString(16).toUpperCase().padStart(4, "0")} (${cp})</span></div>
+          <div style="overflow-x:auto"><table class="chars enc"><thead><tr><th>${rb(u.encName)}</th><th>${rb(u.encHex)}</th><th>${rb(u.encBin)}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+      }).join("");
+    };
+    el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => { inp.value = c.dataset.c; draw(); }));
+    inp.addEventListener("input", draw);
+    draw();
+  }
+
+  function moji(el, u) {
+    const opts = ENCS.filter(e => e.id !== "ascii" && e.id !== "utf-32");
+    const sel = (cls, v) => `<select class="${cls}">${opts.map(e => `<option value="${e.id}"${e.id === v ? " selected" : ""}>${esc(e.name)}</option>`).join("")}</select>`;
+    const presets = [["utf-8", "shift_jis"], ["shift_jis", "utf-8"], ["utf-8", "windows-1252"], ["gbk", "big5"]];
+    el.innerHTML = `<h3>${rb(u.mojiTitle)}</h3><p class="help">${rb(u.mojiHelp)}</p>
+      <input type="text" class="o-in" value="文字化け" aria-label="text" style="width:100%">
+      <div class="mojisel"><label><span>${rb(u.mojiSave)}</span>${sel("o-s", "utf-8")}</label><span class="arrow">→</span><label><span>${rb(u.mojiRead)}</span>${sel("o-r", "shift_jis")}</label></div>
+      <div class="chips">${presets.map(p => `<button type="button" class="chip" data-s="${p[0]}" data-r="${p[1]}">${esc(opts.find(e => e.id === p[0]).name)} → ${esc(opts.find(e => e.id === p[1]).name)}</button>`).join("")}</div>
+      <div class="mojiout"><div><span class="note">${rb(u.mojiBytes)}</span><code class="o-b"></code></div><div><span class="note">${rb(u.mojiResult)}</span><div class="o-res"></div></div><p class="err o-err" hidden></p></div>`;
+    const inp = el.querySelector(".o-in"), s = el.querySelector(".o-s"), r = el.querySelector(".o-r");
+    const draw = () => {
+      const e = ENCS.find(x => x.id === s.value);
+      const bytes = [], miss = [];
+      for (const ch of Array.from(inp.value).slice(0, 40)) { const b = encodeChar(e, ch); if (b) bytes.push(...b); else { miss.push(ch); bytes.push(0x3f); } }
+      el.querySelector(".o-b").textContent = bytes.map(hex2).join(" ");
+      let res = "";
+      try { res = new TextDecoder(r.value).decode(new Uint8Array(bytes)); } catch (x) { res = "?"; }
+      el.querySelector(".o-res").textContent = res;
+      const er = el.querySelector(".o-err");
+      er.hidden = !miss.length;
+      if (miss.length) er.innerHTML = rb(fill(u.mojiCant, { c: miss.join(" ") }));
+    };
+    [inp, s, r].forEach(x => x.addEventListener(x === inp ? "input" : "change", draw));
+    el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => { s.value = c.dataset.s; r.value = c.dataset.r; draw(); }));
+    draw();
+  }
+
+  /* ---------- photo pixels ---------- */
+  function photo(el, u) {
+    const N = 32;
+    el.innerHTML = `<h3>${rb(u.photoTitle)}</h3><p class="help">${rb(u.photoHelp)}</p>
+      <div class="chips"><label class="btn primary" style="cursor:pointer">${rb(u.photoPick)}<input type="file" accept="image/*" class="o-file" hidden></label><button type="button" class="btn o-sample">${rb(u.photoSample)}</button></div>
+      <div class="photowrap"><canvas class="mosaic" width="${N * 12}" height="${N * 12}" aria-label="pixels"></canvas>
+      <div class="pxinfo"><div class="pxsw"></div><table class="chars"><tbody></tbody></table></div></div>`;
+    const cv = el.querySelector(".mosaic"), ctx = cv.getContext("2d");
+    const small = document.createElement("canvas"), sctx = small.getContext("2d", { willReadFrequently: true });
+    let W = N, H = N, sel = [7, 14], data = null;
+    const sample = () => {
+      W = N; H = 24; small.width = W; small.height = H;
+      const g = sctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, "#1e5bd8"); g.addColorStop(0.65, "#9fd3ff");
+      sctx.fillStyle = g; sctx.fillRect(0, 0, W, H);
+      sctx.fillStyle = "#ffb000"; sctx.beginPath(); sctx.arc(24, 6, 4, 0, 7); sctx.fill();
+      sctx.fillStyle = "#2f8f3a"; sctx.fillRect(0, 17, W, 7);
+      sctx.fillStyle = "#ff4f00"; sctx.fillRect(6, 12, 8, 6); sctx.fillStyle = "#7a2a10"; sctx.beginPath(); sctx.moveTo(5, 12); sctx.lineTo(10, 8); sctx.lineTo(15, 12); sctx.fill();
+      sctx.fillStyle = "#ffffff"; sctx.fillRect(9, 14, 2, 4);
+      done();
+    };
+    const done = () => {
+      data = sctx.getImageData(0, 0, W, H).data;
+      cv.width = W * 12; cv.height = H * 12;
+      sel = [Math.min(sel[0], W - 1), Math.min(sel[1], H - 1)];
+      draw();
+    };
+    const draw = () => {
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(small, 0, 0, W, H, 0, 0, cv.width, cv.height);
+      ctx.strokeStyle = "rgba(0,0,0,.15)"; ctx.lineWidth = 1;
+      for (let x = 0; x <= W; x++) { ctx.beginPath(); ctx.moveTo(x * 12 + .5, 0); ctx.lineTo(x * 12 + .5, cv.height); ctx.stroke(); }
+      for (let y = 0; y <= H; y++) { ctx.beginPath(); ctx.moveTo(0, y * 12 + .5); ctx.lineTo(cv.width, y * 12 + .5); ctx.stroke(); }
+      const [x, y] = sel, i = (y * W + x) * 4, rgb = [data[i], data[i + 1], data[i + 2]];
+      ctx.lineWidth = 3; ctx.strokeStyle = "#fff"; ctx.strokeRect(x * 12 + 1.5, y * 12 + 1.5, 9, 9); ctx.strokeStyle = "#000"; ctx.lineWidth = 1; ctx.strokeRect(x * 12 + .5, y * 12 + .5, 12, 12);
+      const code = "#" + rgb.map(hex2).join("");
+      el.querySelector(".pxsw").style.background = code;
+      el.querySelector(".pxinfo tbody").innerHTML =
+        `<tr><th>${rb(u.photoPos)}</th><td colspan="3">(${x + 1}, ${y + 1})</td></tr>
+         <tr><th></th><th>${rb(u.photoDec)}</th><th>${rb(u.photoBin)}</th><th>${rb(u.photoHex)}</th></tr>` +
+        rgb.map((v, k) => `<tr><th><span class="ch ch${k}">${"RGB"[k]}</span></th><td>${v}</td><td><code>${bin8(v)}</code></td><td><code>${hex2(v)}</code></td></tr>`).join("") +
+        `<tr><th>${rb(u.photoCode)}</th><td colspan="3"><code style="font-size:22px">#<span style="color:#d62828">${hex2(rgb[0])}</span><span style="color:#2a9d3a">${hex2(rgb[1])}</span><span style="color:#1e5bd8">${hex2(rgb[2])}</span></code></td></tr>`;
+    };
+    const pick = e => {
+      const r = cv.getBoundingClientRect();
+      const x = Math.floor((e.clientX - r.left) / r.width * W), y = Math.floor((e.clientY - r.top) / r.height * H);
+      if (x >= 0 && y >= 0 && x < W && y < H) { sel = [x, y]; draw(); }
+    };
+    cv.addEventListener("pointerdown", e => { pick(e); cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener("pointermove", e => { if (e.buttons) pick(e); });
+    el.querySelector(".o-file").addEventListener("change", ev => {
+      const f = ev.target.files && ev.target.files[0]; if (!f) return;
+      const url = URL.createObjectURL(f), img = new Image();
+      img.onload = () => {
+        const k = N / Math.max(img.width, img.height);
+        W = Math.max(1, Math.round(img.width * k)); H = Math.max(1, Math.round(img.height * k));
+        small.width = W; small.height = H; sctx.drawImage(img, 0, 0, W, H);
+        URL.revokeObjectURL(url); sel = [Math.floor(W / 2), Math.floor(H / 2)]; done();
+      };
+      img.src = url;
+    });
+    el.querySelector(".o-sample").addEventListener("click", () => { sel = [7, 14]; sample(); });
+    sample();
+  }
+
+  const all = { binary, text, pixel, color, wave, enc, moji, photo };
   function mount(root, u) { root.querySelectorAll("[data-tool]").forEach(el => { const t = all[el.dataset.tool]; if (t) { el.classList.add("tool"); t(el, u); } }); }
   return { mount };
 })();

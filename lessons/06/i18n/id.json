@@ -1,32 +1,337 @@
-{"title":"Komputer dan Data","sub":"Menyatakan teks, gambar, dan suara dengan 0 dan 1",
-"goal":["Menjelaskan bahwa semua informasi di dalam komputer dinyatakan dengan 0 dan 1","Menulis bilangan sederhana dalam biner","Menjelaskan secara sederhana bagaimana teks, gambar, dan suara menjadi angka"],
-"sec":[
-{"h":"Di dalam komputer, semuanya angka","p":["Memotret, mengirim pesan, mendengarkan musik: di dalam komputer, semuanya diolah sebagai angka.","Dan hanya ada dua angka yang dipakai: 0 dan 1. Hari ini kita akan melihat mengapa 0 dan 1 cukup untuk menyatakan apa saja.","AI juga begitu. AI hanya bisa menghitung dengan angka. Jadi, mengubah teks dan gambar menjadi angka adalah langkah pertama untuk memahami AI."]},
-{"h":"Bit: saklar 0 dan 1","p":["Di dalam komputer ada sangat banyak saklar kecil yang mengalirkan listrik (1) atau tidak (0).","Satu nilai \"0 atau 1\" ini disebut bit.","Satu bit bisa menyatakan 2 pola. Dua bit menyatakan 4, tiga bit menyatakan 8. Setiap tambahan satu bit membuat jumlah pola menjadi dua kali lipat.","Delapan bit disebut satu byte. Satu byte bisa menyatakan 256 pola (0 sampai 255)."]},
-{"h":"Biner: berhitung dengan 0 dan 1","p":["Bilangan sehari-hari adalah desimal: memakai angka 0 sampai 9, dan naik ke tempat berikutnya saat mencapai sepuluh.","Biner hanya memakai 0 dan 1. Dengan kartu, mudah dipahami: dari kanan, susun kartu bernilai 1, 2, 4, 8, 16… masing-masing dua kali lipat dari sebelumnya.","Jumlahkan kartu yang bernilai 1, maka hasilnya bilangan itu. Misalnya 13 = 8 + 4 + 1, jadi 1101."],"tool":["binary"]},
-{"h":"Teks juga angka","p":["Setiap huruf punya nomornya sendiri. Ini disebut kode karakter.","Sekarang kita memakai Unicode, yang memberi nomor pada huruf dari seluruh dunia. Huruf A bernomor 65, dan huruf Jepang あ bernomor 12354.","Nepal, Myanmar, Bengali, Sinhala, Tionghoa, Vietnam… huruf dari bahasamu juga punya nomor Unicode. Karena itu, satu ponsel bisa memakai banyak bahasa.","Untuk menyimpan, cara bernama UTF-8 mengubah nomor menjadi deretan 0 dan 1. Huruf Latin memakai 1 byte; kebanyakan huruf Jepang memakai 3 byte."],"tool":["text"]},
-{"h":"Gambar juga angka","p":["Jika gambar diperbesar, terlihat bahwa gambar terdiri dari kotak-kotak kecil. Kotak ini disebut piksel.","Pada gambar hitam putih, setiap piksel bisa ditulis 0 atau 1, misalnya putih = 0 dan hitam = 1.","Pada gambar berwarna, warna setiap piksel dibuat dari tiga cahaya: merah (R), hijau (G), dan biru (B). Masing-masing berupa angka 0 sampai 255.","Foto di ponsel terdiri dari jutaan piksel seperti ini."],"tool":["pixel","color"]},
-{"h":"Suara juga angka","p":["Suara adalah getaran udara: gelombang.","Tinggi gelombang ini diukur berkali-kali dalam jarak waktu yang sangat singkat, lalu dicatat sebagai angka. Ini disebut sampling.","Misalnya, CD musik mengukur 44.100 kali setiap detik. Semakin sering diukur, semakin mirip dengan suara asli."],"tool":["wave"]},
-{"h":"Hubungannya dengan AI","p":["AI mengubah teks, gambar, dan suara menjadi angka sebelum belajar.","AI pengenal gambar mempelajari pola angka piksel. AI penulis teks (LLM) membagi teks menjadi potongan kecil bernama token, mengubahnya menjadi nomor, lalu menghitung.","\"Di dalam komputer, semuanya angka.\" Kita akan memakai gagasan ini di setiap pertemuan."]}],
-"summary":["Komputer menyatakan informasi dengan 0 dan 1 (bit)","8 bit = 1 byte (256 pola)","Biner menulis bilangan dengan kartu bernilai 1, 2, 4, 8…","Setiap huruf punya nomor (kode karakter, Unicode)","Gambar terdiri dari piksel; warna adalah angka merah, hijau, dan biru","Suara menjadi angka dengan mengukur gelombang berkali-kali","AI juga mengubah semuanya menjadi angka sebelum menghitung"],
-"quiz":[
-{"q":"Berapa pola yang bisa dinyatakan oleh satu bit?","o":["1","2","8","256"],"a":1,"e":"Satu bit bernilai 0 atau 1, jadi ada 2 pola."},
-{"q":"Bilangan biner 1010 sama dengan berapa dalam desimal?","o":["10","5","12","1010"],"a":0,"e":"8 + 2 = 10."},
-{"q":"Apa sebutan untuk 8 bit?","o":["1 piksel","1 byte","1 token","1 kilo"],"a":1,"e":"8 bit = 1 byte. Satu byte menyatakan 256 pola."},
-{"q":"Warna piksel pada gambar berwarna dinyatakan dengan apa?","o":["Kode karakter","Tinggi nada suara","Kekuatan merah, hijau, dan biru","Nama file"],"a":2,"e":"Merah (R), hijau (G), dan biru (B) masing-masing berupa angka 0 sampai 255."},
-{"q":"Apa yang pertama dilakukan AI saat belajar dari teks atau gambar?","o":["Menerjemahkan ke bahasa Inggris","Mengubahnya menjadi angka","Menghapus warna","Mencetak di kertas"],"a":1,"e":"AI hanya bisa menghitung dengan angka, jadi teks dan gambar diubah dulu menjadi angka."}],
-"next":"2 Desember (pertemuan 7): Algoritma dan gambaran besar AI",
-"more":[["https://classic.csunplugged.org/activities/binary-numbers/","CS Unplugged: Binary Numbers","Kegiatan mengenal biner dengan kartu"],["https://www.elementsofai.com/","Elements of AI","Kursus online gratis tentang gambaran besar AI tanpa matematika"]],
-"slides":[
-{"kind":"title"},
-{"t":"Tujuan hari ini","b":["Di dalam komputer: hanya 0 dan 1","Menulis bilangan dalam biner","Teks, gambar, dan suara menjadi angka"]},
-{"t":"Di dalam komputer, semuanya angka","b":["Foto, pesan, musik…","Hanya dua angka: 0 dan 1","AI hanya bisa menghitung dengan angka"]},
-{"t":"Bit","b":["Ada listrik = 1, tidak ada = 0","Satu \"0 atau 1\" = 1 bit","Setiap tambahan bit, pola jadi dua kali lipat"],"big":"1 bit → 2   2 bit → 4   8 bit → 256"},
-{"t":"Kartu biner","b":["Dari kanan: 1, 2, 4, 8, 16…","Jumlahkan kartu yang bernilai 1","13 = 8 + 4 + 1 → 1101"],"tool":"binary"},
-{"t":"Teks juga angka","b":["Setiap huruf punya nomor","A → 65, あ → 12354","Nomor untuk semua huruf di dunia: Unicode"],"tool":"text"},
-{"t":"Gambar juga angka","b":["Gambar = banyak piksel","Putih = 0, hitam = 1"],"tool":"pixel"},
-{"t":"Warna juga angka","b":["Tiga cahaya: merah, hijau, biru (RGB)","Masing-masing 0 sampai 255"],"tool":"color"},
-{"t":"Suara juga angka","b":["Suara = gelombang di udara","Tingginya diukur berkali-kali","CD: 44.100 kali per detik"],"tool":"wave"},
-{"t":"Hubungannya dengan AI","b":["AI mengubah semuanya menjadi angka dulu","AI gambar: angka piksel","AI teks (LLM): nomor token"]},
-{"t":"Rangkuman","b":["Semuanya 0 dan 1 (bit)","8 bit = 1 byte","Teks, gambar, suara adalah angka","AI menghitung dengan angka"]},
-{"t":"Kuis","b":["Kuis ada di akhir halaman bacaan","Berikutnya: Algoritma dan gambaran besar AI"]}]}
+{
+"title": "Komputer dan Data",
+"sub": "Menyatakan teks, gambar, dan suara dengan 0 dan 1",
+"goal": [
+"Menjelaskan bahwa semua informasi di dalam komputer dinyatakan dengan 0 dan 1",
+"Menulis bilangan sederhana dalam biner",
+"Menjelaskan secara sederhana bagaimana teks, gambar, dan suara menjadi angka"
+],
+"sec": [
+{
+"h": "Di dalam komputer, semuanya angka",
+"p": [
+"Memotret, mengirim pesan, mendengarkan musik: di dalam komputer, semuanya diolah sebagai angka.",
+"Dan hanya ada dua angka yang dipakai: 0 dan 1. Hari ini kita akan melihat mengapa 0 dan 1 cukup untuk menyatakan apa saja.",
+"AI juga begitu. AI hanya bisa menghitung dengan angka. Jadi, mengubah teks dan gambar menjadi angka adalah langkah pertama untuk memahami AI."
+]
+},
+{
+"h": "Bit: saklar 0 dan 1",
+"p": [
+"Di dalam komputer ada sangat banyak saklar kecil yang mengalirkan listrik (1) atau tidak (0).",
+"Satu nilai \"0 atau 1\" ini disebut bit.",
+"Satu bit bisa menyatakan 2 pola. Dua bit menyatakan 4, tiga bit menyatakan 8. Setiap tambahan satu bit membuat jumlah pola menjadi dua kali lipat.",
+"Delapan bit disebut satu byte. Satu byte bisa menyatakan 256 pola (0 sampai 255)."
+]
+},
+{
+"h": "Biner: berhitung dengan 0 dan 1",
+"p": [
+"Bilangan sehari-hari adalah desimal: memakai angka 0 sampai 9, dan naik ke tempat berikutnya saat mencapai sepuluh.",
+"Biner hanya memakai 0 dan 1. Dengan kartu, mudah dipahami: dari kanan, susun kartu bernilai 1, 2, 4, 8, 16… masing-masing dua kali lipat dari sebelumnya.",
+"Jumlahkan kartu yang bernilai 1, maka hasilnya bilangan itu. Misalnya 13 = 8 + 4 + 1, jadi 1101."
+],
+"tool": [
+"binary"
+]
+},
+{
+"h": "Teks juga angka",
+"p": [
+"Setiap huruf punya nomornya sendiri. Ini disebut kode karakter.",
+"Sekarang kita memakai Unicode, yang memberi nomor pada huruf dari seluruh dunia. Huruf A bernomor 65, dan huruf Jepang あ bernomor 12354.",
+"Nepal, Myanmar, Bengali, Sinhala, Tionghoa, Vietnam… huruf dari bahasamu juga punya nomor Unicode. Karena itu, satu ponsel bisa memakai banyak bahasa.",
+"Untuk menyimpan, cara bernama UTF-8 mengubah nomor menjadi deretan 0 dan 1. Huruf Latin memakai 1 byte; kebanyakan huruf Jepang memakai 3 byte."
+],
+"tool": [
+"text"
+]
+},
+{
+"h": "Pengodean karakter tidak hanya satu: mengapa teks bisa rusak",
+"p": [
+"Di awal era komputer, Amerika Serikat membuat kode karakter bernama ASCII. Kode ini menyatakan 128 karakter, seperti huruf Inggris, angka, dan simbol, dengan 7 bit.",
+"Tetapi 128 karakter tidak cukup untuk bahasa Jepang atau Tionghoa. Karena itu, tiap negara dan wilayah membuat pengodean sendiri yang memakai dua byte atau lebih per karakter (pengodean multibyte): Shift_JIS dan EUC-JP untuk Jepang, GBK untuk Tionghoa sederhana, Big5 untuk Tionghoa tradisional, dan lainnya.",
+"Huruf yang sama, あ, menjadi byte yang berbeda: 82 A0 di Shift_JIS, A4 A2 di EUC-JP, dan E3 81 82 di UTF-8.",
+"Jadi, jika teks yang disimpan dengan satu pengodean dibaca dengan pengodean lain, muncul huruf yang berbeda. Inilah mojibake (teks rusak).",
+"Di Myanmar, sistem bernama Zawgyi yang berbeda dari Unicode lama dipakai secara luas, sehingga teks yang sama bisa tampil benar di satu ponsel dan rusak di ponsel lain.",
+"Unicode dibuat untuk mengakhiri kekacauan ini. Sekarang hampir semua halaman web di dunia memakai UTF-8."
+],
+"tool": [
+"enc",
+"moji"
+]
+},
+{
+"h": "Gambar juga angka",
+"p": [
+"Jika gambar diperbesar, terlihat bahwa gambar terdiri dari kotak-kotak kecil. Kotak ini disebut piksel.",
+"Pada gambar hitam putih, setiap piksel bisa ditulis 0 atau 1, misalnya putih = 0 dan hitam = 1.",
+"Pada gambar berwarna, warna setiap piksel dibuat dari tiga cahaya: merah (R), hijau (G), dan biru (B). Masing-masing berupa angka 0 sampai 255.",
+"Foto di ponsel terdiri dari jutaan piksel seperti ini."
+],
+"tool": [
+"pixel",
+"color"
+]
+},
+{
+"h": "Heksadesimal dan kode warna",
+"p": [
+"Biner hanya memakai 0 dan 1, sehingga angkanya menjadi sangat panjang. Karena itu sering dipakai heksadesimal, dengan 16 simbol: 0–9 dan A–F (10–15).",
+"Empat digit biner (4 bit) sama dengan tepat satu digit heksadesimal. Jadi satu byte (8 bit) bisa ditulis dengan dua digit heksadesimal. Contoh: 255 = 11111111 = FF.",
+"Kode warna di web seperti #FF4F00 menulis merah, hijau, dan biru masing-masing dengan dua digit heksadesimal: FF = 255, 4F = 79, 00 = 0.",
+"Pilih foto di alat di bawah untuk melihat warna setiap piksel dalam desimal, biner, dan heksadesimal."
+],
+"tool": [
+"photo"
+]
+},
+{
+"h": "Suara juga angka",
+"p": [
+"Suara adalah getaran udara: gelombang.",
+"Tinggi gelombang ini diukur berkali-kali dalam jarak waktu yang sangat singkat, lalu dicatat sebagai angka. Ini disebut sampling.",
+"Misalnya, CD musik mengukur 44.100 kali setiap detik. Semakin sering diukur, semakin mirip dengan suara asli."
+],
+"tool": [
+"wave"
+]
+},
+{
+"h": "Hubungannya dengan AI",
+"p": [
+"AI mengubah teks, gambar, dan suara menjadi angka sebelum belajar.",
+"AI pengenal gambar mempelajari pola angka piksel. AI penulis teks (LLM) membagi teks menjadi potongan kecil bernama token, mengubahnya menjadi nomor, lalu menghitung.",
+"\"Di dalam komputer, semuanya angka.\" Kita akan memakai gagasan ini di setiap pertemuan."
+]
+}
+],
+"summary": [
+"Komputer menyatakan informasi dengan 0 dan 1 (bit)",
+"8 bit = 1 byte (256 pola)",
+"Biner menulis bilangan dengan kartu bernilai 1, 2, 4, 8…",
+"Setiap huruf punya nomor (kode karakter, Unicode)",
+"Ada juga pengodean per negara (Shift_JIS, GBK…). Pengodean simpan dan baca yang berbeda menyebabkan mojibake",
+"Gambar terdiri dari piksel; warna adalah angka merah, hijau, dan biru",
+"Satu digit heksadesimal = 4 bit. Kode warna #RRGGBB adalah merah, hijau, biru dalam heksadesimal",
+"Suara menjadi angka dengan mengukur gelombang berkali-kali",
+"AI juga mengubah semuanya menjadi angka sebelum menghitung"
+],
+"quiz": [
+{
+"q": "Berapa pola yang bisa dinyatakan oleh satu bit?",
+"o": [
+"1",
+"2",
+"8",
+"256"
+],
+"a": 1,
+"e": "Satu bit bernilai 0 atau 1, jadi ada 2 pola."
+},
+{
+"q": "Bilangan biner 1010 sama dengan berapa dalam desimal?",
+"o": [
+"10",
+"5",
+"12",
+"1010"
+],
+"a": 0,
+"e": "8 + 2 = 10."
+},
+{
+"q": "Apa sebutan untuk 8 bit?",
+"o": [
+"1 piksel",
+"1 byte",
+"1 token",
+"1 kilo"
+],
+"a": 1,
+"e": "8 bit = 1 byte. Satu byte menyatakan 256 pola."
+},
+{
+"q": "Warna piksel pada gambar berwarna dinyatakan dengan apa?",
+"o": [
+"Kode karakter",
+"Tinggi nada suara",
+"Kekuatan merah, hijau, dan biru",
+"Nama file"
+],
+"a": 2,
+"e": "Merah (R), hijau (G), dan biru (B) masing-masing berupa angka 0 sampai 255."
+},
+{
+"q": "Apa yang pertama dilakukan AI saat belajar dari teks atau gambar?",
+"o": [
+"Menerjemahkan ke bahasa Inggris",
+"Mengubahnya menjadi angka",
+"Menghapus warna",
+"Mencetak di kertas"
+],
+"a": 1,
+"e": "AI hanya bisa menghitung dengan angka, jadi teks dan gambar diubah dulu menjadi angka."
+},
+{
+"q": "Apa yang terjadi jika teks yang disimpan dengan satu pengodean dibaca dengan pengodean lain?",
+"o": [
+"Mojibake (teks rusak)",
+"Halusinasi",
+"Overfitting",
+"Sampling"
+],
+"a": 0,
+"e": "Jika pengodeannya berbeda, byte yang sama ditampilkan sebagai huruf lain."
+},
+{
+"q": "Heksadesimal FF sama dengan berapa dalam desimal?",
+"o": [
+"15",
+"16",
+"255",
+"100"
+],
+"a": 2,
+"e": "F = 15, jadi 15 × 16 + 15 = 255. Dalam biner: 11111111."
+}
+],
+"next": "2 Desember (pertemuan 7): Algoritma dan gambaran besar AI",
+"more": [
+[
+"https://classic.csunplugged.org/activities/binary-numbers/",
+"CS Unplugged: Binary Numbers",
+"Kegiatan mengenal biner dengan kartu"
+],
+[
+"https://www.elementsofai.com/",
+"Elements of AI",
+"Kursus online gratis tentang gambaran besar AI tanpa matematika"
+]
+],
+"slides": [
+{
+"kind": "title"
+},
+{
+"t": "Tujuan hari ini",
+"b": [
+"Di dalam komputer: hanya 0 dan 1",
+"Menulis bilangan dalam biner",
+"Teks, gambar, dan suara menjadi angka"
+]
+},
+{
+"t": "Di dalam komputer, semuanya angka",
+"b": [
+"Foto, pesan, musik…",
+"Hanya dua angka: 0 dan 1",
+"AI hanya bisa menghitung dengan angka"
+]
+},
+{
+"t": "Bit",
+"b": [
+"Ada listrik = 1, tidak ada = 0",
+"Satu \"0 atau 1\" = 1 bit",
+"Setiap tambahan bit, pola jadi dua kali lipat"
+],
+"big": "1 bit → 2   2 bit → 4   8 bit → 256"
+},
+{
+"t": "Kartu biner",
+"b": [
+"Dari kanan: 1, 2, 4, 8, 16…",
+"Jumlahkan kartu yang bernilai 1",
+"13 = 8 + 4 + 1 → 1101"
+],
+"tool": "binary"
+},
+{
+"t": "Teks juga angka",
+"b": [
+"Setiap huruf punya nomor",
+"A → 65, あ → 12354",
+"Nomor untuk semua huruf di dunia: Unicode"
+],
+"tool": "text"
+},
+{
+"t": "Pengodean karakter tidak hanya satu",
+"b": [
+"ASCII: untuk bahasa Inggris, 128 karakter",
+"Pengodean per negara: Shift_JIS, GBK, Big5…",
+"あ = 82 A0 (Shift_JIS), E3 81 82 (UTF-8)"
+],
+"tool": "enc"
+},
+{
+"t": "Mojibake (teks rusak)",
+"b": [
+"Pengodean simpan ≠ pengodean baca",
+"Byte yang sama terlihat sebagai huruf lain",
+"Solusinya: Unicode bersama (UTF-8)"
+],
+"tool": "moji"
+},
+{
+"t": "Gambar juga angka",
+"b": [
+"Gambar = banyak piksel",
+"Putih = 0, hitam = 1"
+],
+"tool": "pixel"
+},
+{
+"t": "Warna juga angka",
+"b": [
+"Tiga cahaya: merah, hijau, biru (RGB)",
+"Masing-masing 0 sampai 255"
+],
+"tool": "color"
+},
+{
+"t": "Heksadesimal dan kode warna",
+"b": [
+"16 simbol: 0–9 dan A–F",
+"4 bit = 1 digit heksadesimal",
+"#FF4F00 = merah 255, hijau 79, biru 0"
+],
+"tool": "photo"
+},
+{
+"t": "Suara juga angka",
+"b": [
+"Suara = gelombang di udara",
+"Tingginya diukur berkali-kali",
+"CD: 44.100 kali per detik"
+],
+"tool": "wave"
+},
+{
+"t": "Hubungannya dengan AI",
+"b": [
+"AI mengubah semuanya menjadi angka dulu",
+"AI gambar: angka piksel",
+"AI teks (LLM): nomor token"
+]
+},
+{
+"t": "Rangkuman",
+"b": [
+"Semuanya 0 dan 1 (bit)",
+"8 bit = 1 byte",
+"Teks, gambar, suara adalah angka",
+"AI menghitung dengan angka"
+]
+},
+{
+"t": "Kuis",
+"b": [
+"Kuis ada di akhir halaman bacaan",
+"Berikutnya: Algoritma dan gambaran besar AI"
+]
+}
+]
+}

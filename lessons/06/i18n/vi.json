@@ -1,32 +1,337 @@
-{"title":"Máy tính và dữ liệu","sub":"Biểu diễn chữ, hình ảnh và âm thanh bằng 0 và 1",
-"goal":["Giải thích được rằng mọi thông tin trong máy tính đều được biểu diễn bằng 0 và 1","Viết được các số đơn giản ở dạng nhị phân","Giải thích đơn giản cách chữ, hình ảnh và âm thanh trở thành con số"],
-"sec":[
-{"h":"Bên trong máy tính, mọi thứ đều là số","p":["Chụp ảnh, gửi tin nhắn, nghe nhạc: bên trong máy tính, tất cả đều được xử lý dưới dạng con số.","Và chỉ dùng hai chữ số: 0 và 1. Hôm nay chúng ta sẽ xem vì sao chỉ 0 và 1 là đủ để biểu diễn mọi thứ.","AI cũng vậy. AI chỉ tính toán được với con số. Vì thế, biến chữ và hình ảnh thành số là bước đầu tiên để hiểu AI."]},
-{"h":"Bit: công tắc 0 và 1","p":["Trong máy tính có rất nhiều công tắc nhỏ, cho dòng điện chạy qua (1) hoặc không (0).","Một giá trị \"0 hoặc 1\" như vậy gọi là một bit.","Một bit biểu diễn được 2 khả năng. Hai bit được 4, ba bit được 8. Mỗi bit thêm vào làm số khả năng tăng gấp đôi.","Tám bit gộp lại gọi là một byte. Một byte biểu diễn được 256 khả năng (từ 0 đến 255)."]},
-{"h":"Nhị phân: đếm bằng 0 và 1","p":["Số ta dùng hằng ngày là hệ thập phân: dùng các chữ số từ 0 đến 9, đến mười thì sang hàng tiếp theo.","Hệ nhị phân chỉ dùng 0 và 1. Dùng thẻ thì rất dễ: từ phải sang, xếp các thẻ có giá trị 1, 2, 4, 8, 16… thẻ sau gấp đôi thẻ trước.","Cộng các thẻ đang là 1 lại, ta được con số đó. Ví dụ, 13 = 8 + 4 + 1, nên viết là 1101."],"tool":["binary"]},
-{"h":"Chữ cũng là số","p":["Mỗi ký tự có một số riêng. Đó gọi là mã ký tự.","Ngày nay ta dùng Unicode, hệ thống đánh số cho chữ viết trên toàn thế giới. Chữ A là số 65, chữ Nhật あ là số 12354.","Tiếng Nepal, Myanmar, Bengal, Sinhala, Trung, Việt… chữ của ngôn ngữ bạn cũng đều có số Unicode. Vì vậy, một chiếc điện thoại có thể dùng nhiều ngôn ngữ.","Khi lưu, cách gọi là UTF-8 biến các số thành dãy 0 và 1. Chữ Latin chiếm 1 byte; phần lớn chữ Nhật chiếm 3 byte. Chữ tiếng Việt có dấu thường chiếm 2–3 byte."],"tool":["text"]},
-{"h":"Hình ảnh cũng là số","p":["Phóng to một bức ảnh, bạn sẽ thấy nó gồm nhiều ô vuông nhỏ. Các ô này gọi là điểm ảnh (pixel).","Với ảnh đen trắng, mỗi điểm ảnh có thể viết là 0 hoặc 1, ví dụ trắng = 0, đen = 1.","Với ảnh màu, màu của mỗi điểm ảnh được tạo từ ba ánh sáng: đỏ (R), xanh lá (G) và xanh dương (B). Mỗi màu là một số từ 0 đến 255.","Một bức ảnh chụp bằng điện thoại gồm hàng triệu điểm ảnh như vậy."],"tool":["pixel","color"]},
-{"h":"Âm thanh cũng là số","p":["Âm thanh là sự rung động của không khí: một sóng.","Ta đo độ cao của sóng nhiều lần, cách nhau rất ngắn, rồi ghi lại thành con số. Việc này gọi là lấy mẫu.","Ví dụ, đĩa CD nhạc đo 44.100 lần mỗi giây. Đo càng nhiều, càng gần với âm thanh gốc."],"tool":["wave"]},
-{"h":"Liên hệ với AI","p":["AI biến chữ, hình ảnh và âm thanh thành số trước khi học.","AI nhận dạng ảnh học các quy luật trong con số của điểm ảnh. AI viết văn bản (LLM) chia văn bản thành các mảnh nhỏ gọi là token, đổi thành số rồi mới tính toán.","\"Bên trong máy tính, mọi thứ đều là số.\" Chúng ta sẽ dùng ý này trong mọi buổi học tới."]}],
-"summary":["Máy tính biểu diễn thông tin bằng 0 và 1 (bit)","8 bit = 1 byte (256 khả năng)","Nhị phân viết số bằng các thẻ có giá trị 1, 2, 4, 8…","Mỗi ký tự có một số (mã ký tự, Unicode)","Ảnh gồm các điểm ảnh; màu là các số của đỏ, xanh lá, xanh dương","Âm thanh thành số bằng cách đo sóng nhiều lần","AI cũng biến mọi thứ thành số trước khi tính toán"],
-"quiz":[
-{"q":"Một bit biểu diễn được bao nhiêu khả năng?","o":["1","2","8","256"],"a":1,"e":"Một bit là 0 hoặc 1, nên có 2 khả năng."},
-{"q":"Số nhị phân 1010 bằng bao nhiêu trong hệ thập phân?","o":["10","5","12","1010"],"a":0,"e":"8 + 2 = 10."},
-{"q":"8 bit gộp lại gọi là gì?","o":["1 điểm ảnh","1 byte","1 token","1 kilo"],"a":1,"e":"8 bit = 1 byte. Một byte biểu diễn được 256 khả năng."},
-{"q":"Màu của một điểm ảnh trong ảnh màu được biểu diễn bằng gì?","o":["Mã ký tự","Độ cao của âm thanh","Độ mạnh của đỏ, xanh lá và xanh dương","Tên tệp"],"a":2,"e":"Đỏ (R), xanh lá (G) và xanh dương (B), mỗi màu là một số từ 0 đến 255."},
-{"q":"Khi học từ chữ hoặc hình ảnh, AI làm gì đầu tiên?","o":["Dịch sang tiếng Anh","Biến chúng thành số","Xóa màu","In ra giấy"],"a":1,"e":"AI chỉ tính toán được với số, nên trước hết biến chữ và ảnh thành số."}],
-"next":"Ngày 2/12 (buổi 7): Thuật toán và bức tranh toàn cảnh của AI",
-"more":[["https://classic.csunplugged.org/activities/binary-numbers/","CS Unplugged: Binary Numbers","Hoạt động tìm hiểu số nhị phân bằng thẻ"],["https://www.elementsofai.com/","Elements of AI","Khóa học trực tuyến miễn phí về toàn cảnh AI, không cần toán"]],
-"slides":[
-{"kind":"title"},
-{"t":"Mục tiêu hôm nay","b":["Trong máy tính: chỉ có 0 và 1","Viết số ở dạng nhị phân","Chữ, ảnh và âm thanh thành số"]},
-{"t":"Bên trong máy tính, mọi thứ là số","b":["Ảnh, tin nhắn, âm nhạc…","Chỉ hai chữ số: 0 và 1","AI chỉ tính toán được với số"]},
-{"t":"Bit","b":["Có điện = 1, không có = 0","Một \"0 hoặc 1\" = 1 bit","Thêm một bit, số khả năng gấp đôi"],"big":"1 bit → 2   2 bit → 4   8 bit → 256"},
-{"t":"Thẻ nhị phân","b":["Từ phải: 1, 2, 4, 8, 16…","Cộng các thẻ là 1","13 = 8 + 4 + 1 → 1101"],"tool":"binary"},
-{"t":"Chữ cũng là số","b":["Mỗi ký tự có một số","A → 65, あ → 12354","Số cho mọi chữ viết: Unicode"],"tool":"text"},
-{"t":"Ảnh cũng là số","b":["Ảnh = nhiều điểm ảnh","Trắng = 0, đen = 1"],"tool":"pixel"},
-{"t":"Màu cũng là số","b":["Ba ánh sáng: đỏ, xanh lá, xanh dương (RGB)","Mỗi màu từ 0 đến 255"],"tool":"color"},
-{"t":"Âm thanh cũng là số","b":["Âm thanh = sóng trong không khí","Đo độ cao nhiều lần","CD: 44.100 lần mỗi giây"],"tool":"wave"},
-{"t":"Liên hệ với AI","b":["AI biến mọi thứ thành số trước","AI ảnh: số của điểm ảnh","AI văn bản (LLM): số của token"]},
-{"t":"Tóm tắt","b":["Mọi thứ là 0 và 1 (bit)","8 bit = 1 byte","Chữ, ảnh, âm thanh đều là số","AI tính toán bằng số"]},
-{"t":"Câu hỏi kiểm tra","b":["Câu hỏi ở cuối trang bài đọc","Buổi sau: Thuật toán và toàn cảnh AI"]}]}
+{
+"title": "Máy tính và dữ liệu",
+"sub": "Biểu diễn chữ, hình ảnh và âm thanh bằng 0 và 1",
+"goal": [
+"Giải thích được rằng mọi thông tin trong máy tính đều được biểu diễn bằng 0 và 1",
+"Viết được các số đơn giản ở dạng nhị phân",
+"Giải thích đơn giản cách chữ, hình ảnh và âm thanh trở thành con số"
+],
+"sec": [
+{
+"h": "Bên trong máy tính, mọi thứ đều là số",
+"p": [
+"Chụp ảnh, gửi tin nhắn, nghe nhạc: bên trong máy tính, tất cả đều được xử lý dưới dạng con số.",
+"Và chỉ dùng hai chữ số: 0 và 1. Hôm nay chúng ta sẽ xem vì sao chỉ 0 và 1 là đủ để biểu diễn mọi thứ.",
+"AI cũng vậy. AI chỉ tính toán được với con số. Vì thế, biến chữ và hình ảnh thành số là bước đầu tiên để hiểu AI."
+]
+},
+{
+"h": "Bit: công tắc 0 và 1",
+"p": [
+"Trong máy tính có rất nhiều công tắc nhỏ, cho dòng điện chạy qua (1) hoặc không (0).",
+"Một giá trị \"0 hoặc 1\" như vậy gọi là một bit.",
+"Một bit biểu diễn được 2 khả năng. Hai bit được 4, ba bit được 8. Mỗi bit thêm vào làm số khả năng tăng gấp đôi.",
+"Tám bit gộp lại gọi là một byte. Một byte biểu diễn được 256 khả năng (từ 0 đến 255)."
+]
+},
+{
+"h": "Nhị phân: đếm bằng 0 và 1",
+"p": [
+"Số ta dùng hằng ngày là hệ thập phân: dùng các chữ số từ 0 đến 9, đến mười thì sang hàng tiếp theo.",
+"Hệ nhị phân chỉ dùng 0 và 1. Dùng thẻ thì rất dễ: từ phải sang, xếp các thẻ có giá trị 1, 2, 4, 8, 16… thẻ sau gấp đôi thẻ trước.",
+"Cộng các thẻ đang là 1 lại, ta được con số đó. Ví dụ, 13 = 8 + 4 + 1, nên viết là 1101."
+],
+"tool": [
+"binary"
+]
+},
+{
+"h": "Chữ cũng là số",
+"p": [
+"Mỗi ký tự có một số riêng. Đó gọi là mã ký tự.",
+"Ngày nay ta dùng Unicode, hệ thống đánh số cho chữ viết trên toàn thế giới. Chữ A là số 65, chữ Nhật あ là số 12354.",
+"Tiếng Nepal, Myanmar, Bengal, Sinhala, Trung, Việt… chữ của ngôn ngữ bạn cũng đều có số Unicode. Vì vậy, một chiếc điện thoại có thể dùng nhiều ngôn ngữ.",
+"Khi lưu, cách gọi là UTF-8 biến các số thành dãy 0 và 1. Chữ Latin chiếm 1 byte; phần lớn chữ Nhật chiếm 3 byte. Chữ tiếng Việt có dấu thường chiếm 2–3 byte."
+],
+"tool": [
+"text"
+]
+},
+{
+"h": "Không chỉ có một bảng mã: vì sao chữ bị lỗi",
+"p": [
+"Thời kỳ đầu của máy tính, Mỹ tạo ra bảng mã ASCII. Nó biểu diễn 128 ký tự như chữ cái tiếng Anh, chữ số và ký hiệu bằng 7 bit.",
+"Nhưng 128 ký tự không đủ cho tiếng Nhật hay tiếng Trung. Vì vậy, mỗi nước, mỗi vùng tạo bảng mã riêng dùng từ hai byte trở lên cho một ký tự (bảng mã nhiều byte): Shift_JIS và EUC-JP cho tiếng Nhật, GBK cho tiếng Trung giản thể, Big5 cho tiếng Trung phồn thể, v.v. Ở Việt Nam trước đây cũng từng có nhiều bảng mã như TCVN3 hay VNI.",
+"Cùng một chữ あ nhưng byte khác nhau: 82 A0 trong Shift_JIS, A4 A2 trong EUC-JP, E3 81 82 trong UTF-8.",
+"Vì thế, nếu chữ được lưu bằng một bảng mã nhưng đọc bằng bảng mã khác, sẽ hiện ra chữ khác. Đó gọi là lỗi phông (mojibake).",
+"Ở Myanmar, một hệ thống tên Zawgyi, khác với Unicode, đã được dùng rộng rãi trong thời gian dài, nên cùng một đoạn văn có thể hiển thị đúng trên điện thoại này nhưng bị vỡ trên điện thoại khác.",
+"Unicode ra đời để chấm dứt sự lộn xộn đó. Ngày nay, gần như mọi trang web trên thế giới đều dùng UTF-8."
+],
+"tool": [
+"enc",
+"moji"
+]
+},
+{
+"h": "Hình ảnh cũng là số",
+"p": [
+"Phóng to một bức ảnh, bạn sẽ thấy nó gồm nhiều ô vuông nhỏ. Các ô này gọi là điểm ảnh (pixel).",
+"Với ảnh đen trắng, mỗi điểm ảnh có thể viết là 0 hoặc 1, ví dụ trắng = 0, đen = 1.",
+"Với ảnh màu, màu của mỗi điểm ảnh được tạo từ ba ánh sáng: đỏ (R), xanh lá (G) và xanh dương (B). Mỗi màu là một số từ 0 đến 255.",
+"Một bức ảnh chụp bằng điện thoại gồm hàng triệu điểm ảnh như vậy."
+],
+"tool": [
+"pixel",
+"color"
+]
+},
+{
+"h": "Thập lục phân và mã màu",
+"p": [
+"Nhị phân chỉ có 0 và 1 nên số rất dài. Vì vậy người ta hay dùng hệ thập lục phân, với 16 ký hiệu: 0–9 và A–F (10–15).",
+"Bốn chữ số nhị phân (4 bit) đúng bằng một chữ số thập lục phân. Nên một byte (8 bit) viết được bằng hai chữ số thập lục phân. Ví dụ: 255 = 11111111 = FF.",
+"Mã màu trên web như #FF4F00 viết đỏ, xanh lá và xanh dương, mỗi màu bằng hai chữ số thập lục phân: FF = 255, 4F = 79, 00 = 0.",
+"Chọn ảnh trong công cụ bên dưới để xem màu của từng điểm ảnh ở dạng thập phân, nhị phân và thập lục phân."
+],
+"tool": [
+"photo"
+]
+},
+{
+"h": "Âm thanh cũng là số",
+"p": [
+"Âm thanh là sự rung động của không khí: một sóng.",
+"Ta đo độ cao của sóng nhiều lần, cách nhau rất ngắn, rồi ghi lại thành con số. Việc này gọi là lấy mẫu.",
+"Ví dụ, đĩa CD nhạc đo 44.100 lần mỗi giây. Đo càng nhiều, càng gần với âm thanh gốc."
+],
+"tool": [
+"wave"
+]
+},
+{
+"h": "Liên hệ với AI",
+"p": [
+"AI biến chữ, hình ảnh và âm thanh thành số trước khi học.",
+"AI nhận dạng ảnh học các quy luật trong con số của điểm ảnh. AI viết văn bản (LLM) chia văn bản thành các mảnh nhỏ gọi là token, đổi thành số rồi mới tính toán.",
+"\"Bên trong máy tính, mọi thứ đều là số.\" Chúng ta sẽ dùng ý này trong mọi buổi học tới."
+]
+}
+],
+"summary": [
+"Máy tính biểu diễn thông tin bằng 0 và 1 (bit)",
+"8 bit = 1 byte (256 khả năng)",
+"Nhị phân viết số bằng các thẻ có giá trị 1, 2, 4, 8…",
+"Mỗi ký tự có một số (mã ký tự, Unicode)",
+"Mỗi nước cũng có bảng mã riêng (Shift_JIS, GBK…). Lưu và đọc bằng bảng mã khác nhau sẽ gây lỗi phông",
+"Ảnh gồm các điểm ảnh; màu là các số của đỏ, xanh lá, xanh dương",
+"Một chữ số thập lục phân = 4 bit. Mã màu #RRGGBB là đỏ, xanh lá, xanh dương ở dạng thập lục phân",
+"Âm thanh thành số bằng cách đo sóng nhiều lần",
+"AI cũng biến mọi thứ thành số trước khi tính toán"
+],
+"quiz": [
+{
+"q": "Một bit biểu diễn được bao nhiêu khả năng?",
+"o": [
+"1",
+"2",
+"8",
+"256"
+],
+"a": 1,
+"e": "Một bit là 0 hoặc 1, nên có 2 khả năng."
+},
+{
+"q": "Số nhị phân 1010 bằng bao nhiêu trong hệ thập phân?",
+"o": [
+"10",
+"5",
+"12",
+"1010"
+],
+"a": 0,
+"e": "8 + 2 = 10."
+},
+{
+"q": "8 bit gộp lại gọi là gì?",
+"o": [
+"1 điểm ảnh",
+"1 byte",
+"1 token",
+"1 kilo"
+],
+"a": 1,
+"e": "8 bit = 1 byte. Một byte biểu diễn được 256 khả năng."
+},
+{
+"q": "Màu của một điểm ảnh trong ảnh màu được biểu diễn bằng gì?",
+"o": [
+"Mã ký tự",
+"Độ cao của âm thanh",
+"Độ mạnh của đỏ, xanh lá và xanh dương",
+"Tên tệp"
+],
+"a": 2,
+"e": "Đỏ (R), xanh lá (G) và xanh dương (B), mỗi màu là một số từ 0 đến 255."
+},
+{
+"q": "Khi học từ chữ hoặc hình ảnh, AI làm gì đầu tiên?",
+"o": [
+"Dịch sang tiếng Anh",
+"Biến chúng thành số",
+"Xóa màu",
+"In ra giấy"
+],
+"a": 1,
+"e": "AI chỉ tính toán được với số, nên trước hết biến chữ và ảnh thành số."
+},
+{
+"q": "Chuyện gì xảy ra khi chữ lưu bằng một bảng mã lại được đọc bằng bảng mã khác?",
+"o": [
+"Lỗi phông (mojibake)",
+"Ảo giác",
+"Quá khớp",
+"Lấy mẫu"
+],
+"a": 0,
+"e": "Khi bảng mã khác nhau, cùng một byte sẽ hiện thành chữ khác."
+},
+{
+"q": "Số thập lục phân FF bằng bao nhiêu trong hệ thập phân?",
+"o": [
+"15",
+"16",
+"255",
+"100"
+],
+"a": 2,
+"e": "F = 15, nên 15 × 16 + 15 = 255. Ở dạng nhị phân là 11111111."
+}
+],
+"next": "Ngày 2/12 (buổi 7): Thuật toán và bức tranh toàn cảnh của AI",
+"more": [
+[
+"https://classic.csunplugged.org/activities/binary-numbers/",
+"CS Unplugged: Binary Numbers",
+"Hoạt động tìm hiểu số nhị phân bằng thẻ"
+],
+[
+"https://www.elementsofai.com/",
+"Elements of AI",
+"Khóa học trực tuyến miễn phí về toàn cảnh AI, không cần toán"
+]
+],
+"slides": [
+{
+"kind": "title"
+},
+{
+"t": "Mục tiêu hôm nay",
+"b": [
+"Trong máy tính: chỉ có 0 và 1",
+"Viết số ở dạng nhị phân",
+"Chữ, ảnh và âm thanh thành số"
+]
+},
+{
+"t": "Bên trong máy tính, mọi thứ là số",
+"b": [
+"Ảnh, tin nhắn, âm nhạc…",
+"Chỉ hai chữ số: 0 và 1",
+"AI chỉ tính toán được với số"
+]
+},
+{
+"t": "Bit",
+"b": [
+"Có điện = 1, không có = 0",
+"Một \"0 hoặc 1\" = 1 bit",
+"Thêm một bit, số khả năng gấp đôi"
+],
+"big": "1 bit → 2   2 bit → 4   8 bit → 256"
+},
+{
+"t": "Thẻ nhị phân",
+"b": [
+"Từ phải: 1, 2, 4, 8, 16…",
+"Cộng các thẻ là 1",
+"13 = 8 + 4 + 1 → 1101"
+],
+"tool": "binary"
+},
+{
+"t": "Chữ cũng là số",
+"b": [
+"Mỗi ký tự có một số",
+"A → 65, あ → 12354",
+"Số cho mọi chữ viết: Unicode"
+],
+"tool": "text"
+},
+{
+"t": "Không chỉ có một bảng mã",
+"b": [
+"ASCII: cho tiếng Anh, 128 ký tự",
+"Bảng mã từng nước: Shift_JIS, GBK, Big5…",
+"あ = 82 A0 (Shift_JIS), E3 81 82 (UTF-8)"
+],
+"tool": "enc"
+},
+{
+"t": "Lỗi phông (mojibake)",
+"b": [
+"Bảng mã khi lưu ≠ bảng mã khi đọc",
+"Cùng byte nhưng hiện thành chữ khác",
+"Cách giải quyết: Unicode chung (UTF-8)"
+],
+"tool": "moji"
+},
+{
+"t": "Ảnh cũng là số",
+"b": [
+"Ảnh = nhiều điểm ảnh",
+"Trắng = 0, đen = 1"
+],
+"tool": "pixel"
+},
+{
+"t": "Màu cũng là số",
+"b": [
+"Ba ánh sáng: đỏ, xanh lá, xanh dương (RGB)",
+"Mỗi màu từ 0 đến 255"
+],
+"tool": "color"
+},
+{
+"t": "Thập lục phân và mã màu",
+"b": [
+"16 ký hiệu: 0–9 và A–F",
+"4 bit = 1 chữ số thập lục phân",
+"#FF4F00 = đỏ 255, xanh lá 79, xanh dương 0"
+],
+"tool": "photo"
+},
+{
+"t": "Âm thanh cũng là số",
+"b": [
+"Âm thanh = sóng trong không khí",
+"Đo độ cao nhiều lần",
+"CD: 44.100 lần mỗi giây"
+],
+"tool": "wave"
+},
+{
+"t": "Liên hệ với AI",
+"b": [
+"AI biến mọi thứ thành số trước",
+"AI ảnh: số của điểm ảnh",
+"AI văn bản (LLM): số của token"
+]
+},
+{
+"t": "Tóm tắt",
+"b": [
+"Mọi thứ là 0 và 1 (bit)",
+"8 bit = 1 byte",
+"Chữ, ảnh, âm thanh đều là số",
+"AI tính toán bằng số"
+]
+},
+{
+"t": "Câu hỏi kiểm tra",
+"b": [
+"Câu hỏi ở cuối trang bài đọc",
+"Buổi sau: Thuật toán và toàn cảnh AI"
+]
+}
+]
+}

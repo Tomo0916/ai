@@ -1,32 +1,337 @@
-{"title":"Computers and Data","sub":"Representing text, images and sound with 0 and 1",
-"goal":["Explain that all information inside a computer is represented with 0 and 1","Write simple numbers in binary","Explain, in simple terms, how text, images and sound become numbers"],
-"sec":[
-{"h":"Inside a computer, everything is numbers","p":["Taking a photo, sending a message, listening to music: inside a computer, all of these are handled as numbers.","And only two digits are used: 0 and 1. Today we will see why 0 and 1 are enough to represent anything.","AI is the same. AI can only calculate with numbers, so turning text and images into numbers is the first step to understanding AI."]},
-{"h":"Bits: switches of 0 and 1","p":["A computer contains a huge number of tiny switches that turn electricity on (1) or off (0).","One of these \"0 or 1\" values is called a bit.","One bit can show 2 patterns. Two bits can show 4, and three bits can show 8. Every extra bit doubles the number of patterns.","Eight bits together make one byte. One byte can show 256 patterns (0 to 255)."]},
-{"h":"Binary: counting with 0 and 1","p":["The numbers we use every day are decimal. They use ten digits, 0 to 9, and move to the next place at ten.","Binary uses only 0 and 1. Cards make it easy: from the right, line up cards worth 1, 2, 4, 8, 16… each one double the last.","Add up the cards turned to 1, and you get the number. For example, 13 is 8 + 4 + 1, so it is 1101."],"tool":["binary"]},
-{"h":"Text is numbers too","p":["Every character has its own number. This is called a character code.","Today we use Unicode, which gives a number to characters from all over the world. The English letter A is number 65, and the Japanese character あ is number 12354.","Nepali, Burmese, Bengali, Sinhala, Chinese, Vietnamese… the characters of your language all have Unicode numbers too. That is why one phone can use many languages.","To save text, a method called UTF-8 turns the numbers into rows of 0s and 1s. An English letter takes 1 byte; most Japanese characters take 3 bytes."],"tool":["text"]},
-{"h":"Images are numbers too","p":["If you zoom far into an image, you see it is made of tiny squares. These squares are called pixels.","In a black-and-white image, each pixel can be written as 0 or 1, for example white = 0 and black = 1.","In a color image, each pixel's color is made from three kinds of light: red (R), green (G) and blue (B). Each is a number from 0 to 255.","A phone photo is made of millions of these pixels."],"tool":["pixel","color"]},
-{"h":"Sound is numbers too","p":["Sound is a vibration of the air: a wave.","We measure the height of this wave again and again at very short intervals and record it as numbers. This is called sampling.","A music CD, for example, measures 44,100 times every second. The more often we measure, the closer we get to the original sound."],"tool":["wave"]},
-{"h":"The link to AI","p":["AI turns text, images and sound into numbers before it learns.","An AI that recognizes images learns patterns in pixel numbers. An AI that writes text (an LLM) splits text into small pieces called tokens, turns them into numbers, and then calculates.","\"Inside a computer, everything is numbers.\" We will use this idea in every class from now on."]}],
-"summary":["Computers represent information with 0 and 1 (bits)","8 bits = 1 byte (256 patterns)","Binary writes numbers as a mix of cards worth 1, 2, 4, 8…","Every character has a number (character codes, Unicode)","Images are made of pixels; colors are numbers for red, green and blue","Sound becomes numbers by measuring the wave many times","AI also turns everything into numbers before it calculates"],
-"quiz":[
-{"q":"How many patterns can one bit show?","o":["1","2","8","256"],"a":1,"e":"A bit is either 0 or 1, so it shows 2 patterns."},
-{"q":"What is the binary number 1010 in decimal?","o":["10","5","12","1010"],"a":0,"e":"8 + 2 = 10."},
-{"q":"What do we call 8 bits together?","o":["1 pixel","1 byte","1 token","1 kilo"],"a":1,"e":"8 bits = 1 byte. One byte can show 256 patterns."},
-{"q":"How is the color of a pixel in a color image represented?","o":["A character code","The pitch of a sound","The strength of red, green and blue","The file name"],"a":2,"e":"Red (R), green (G) and blue (B) are each a number from 0 to 255."},
-{"q":"What does AI do first when it learns from text or images?","o":["Translate them into English","Turn them into numbers","Remove the colors","Print them on paper"],"a":1,"e":"AI can only calculate with numbers, so it first turns text and images into numbers."}],
-"next":"December 2 (Class 7): Algorithms and the big picture of AI",
-"more":[["https://classic.csunplugged.org/activities/binary-numbers/","CS Unplugged: Binary Numbers","An activity for learning binary with cards"],["https://www.elementsofai.com/","Elements of AI","A free online course on the big picture of AI, with no math"]],
-"slides":[
-{"kind":"title"},
-{"t":"Today's goals","b":["Inside a computer: only 0 and 1","Write numbers in binary","Text, images and sound become numbers"]},
-{"t":"Inside a computer, everything is numbers","b":["Photos, messages, music…","Only two digits: 0 and 1","AI can only calculate with numbers"]},
-{"t":"Bits","b":["Electricity on = 1, off = 0","One \"0 or 1\" = 1 bit","Each extra bit doubles the patterns"],"big":"1 bit → 2   2 bits → 4   8 bits → 256"},
-{"t":"Binary cards","b":["From the right: 1, 2, 4, 8, 16…","Add the cards showing 1","13 = 8 + 4 + 1 → 1101"],"tool":"binary"},
-{"t":"Text is numbers too","b":["Every character has a number","A → 65, あ → 12354","Numbers for every writing system: Unicode"],"tool":"text"},
-{"t":"Images are numbers too","b":["Image = many pixels","White = 0, black = 1"],"tool":"pixel"},
-{"t":"Colors are numbers too","b":["Three kinds of light: red, green, blue (RGB)","Each from 0 to 255"],"tool":"color"},
-{"t":"Sound is numbers too","b":["Sound = a wave in the air","Measure its height again and again","A CD: 44,100 times per second"],"tool":"wave"},
-{"t":"The link to AI","b":["AI first turns everything into numbers","Image AI: learns pixel numbers","Text AI (LLM): turns text into token numbers"]},
-{"t":"Summary","b":["Everything is 0 and 1 (bits)","8 bits = 1 byte","Text, images and sound are numbers","AI calculates with numbers"]},
-{"t":"Check quiz","b":["The quiz is at the end of the reading page","Next: Algorithms and the big picture of AI"]}]}
+{
+"title": "Computers and Data",
+"sub": "Representing text, images and sound with 0 and 1",
+"goal": [
+"Explain that all information inside a computer is represented with 0 and 1",
+"Write simple numbers in binary",
+"Explain, in simple terms, how text, images and sound become numbers"
+],
+"sec": [
+{
+"h": "Inside a computer, everything is numbers",
+"p": [
+"Taking a photo, sending a message, listening to music: inside a computer, all of these are handled as numbers.",
+"And only two digits are used: 0 and 1. Today we will see why 0 and 1 are enough to represent anything.",
+"AI is the same. AI can only calculate with numbers, so turning text and images into numbers is the first step to understanding AI."
+]
+},
+{
+"h": "Bits: switches of 0 and 1",
+"p": [
+"A computer contains a huge number of tiny switches that turn electricity on (1) or off (0).",
+"One of these \"0 or 1\" values is called a bit.",
+"One bit can show 2 patterns. Two bits can show 4, and three bits can show 8. Every extra bit doubles the number of patterns.",
+"Eight bits together make one byte. One byte can show 256 patterns (0 to 255)."
+]
+},
+{
+"h": "Binary: counting with 0 and 1",
+"p": [
+"The numbers we use every day are decimal. They use ten digits, 0 to 9, and move to the next place at ten.",
+"Binary uses only 0 and 1. Cards make it easy: from the right, line up cards worth 1, 2, 4, 8, 16… each one double the last.",
+"Add up the cards turned to 1, and you get the number. For example, 13 is 8 + 4 + 1, so it is 1101."
+],
+"tool": [
+"binary"
+]
+},
+{
+"h": "Text is numbers too",
+"p": [
+"Every character has its own number. This is called a character code.",
+"Today we use Unicode, which gives a number to characters from all over the world. The English letter A is number 65, and the Japanese character あ is number 12354.",
+"Nepali, Burmese, Bengali, Sinhala, Chinese, Vietnamese… the characters of your language all have Unicode numbers too. That is why one phone can use many languages.",
+"To save text, a method called UTF-8 turns the numbers into rows of 0s and 1s. An English letter takes 1 byte; most Japanese characters take 3 bytes."
+],
+"tool": [
+"text"
+]
+},
+{
+"h": "There is more than one character encoding: why text gets garbled",
+"p": [
+"In the early days of computers, the United States created a character code called ASCII. It represents 128 characters, such as English letters, digits and symbols, with 7 bits.",
+"But 128 characters are not enough for Japanese or Chinese. So countries and regions created their own encodings that use two or more bytes per character (multibyte encodings): Shift_JIS and EUC-JP for Japanese, GBK for Simplified Chinese, Big5 for Traditional Chinese, and others.",
+"Even the same character あ becomes different bytes: 82 A0 in Shift_JIS, A4 A2 in EUC-JP and E3 81 82 in UTF-8.",
+"So if text saved in one encoding is read as another, different characters appear. This is called mojibake (garbled text).",
+"In Myanmar, a system called Zawgyi, separate from Unicode, was widely used for a long time, so the same text could look right on one phone and broken on another.",
+"Unicode was created to end this confusion. Today, almost all web pages in the world use UTF-8."
+],
+"tool": [
+"enc",
+"moji"
+]
+},
+{
+"h": "Images are numbers too",
+"p": [
+"If you zoom far into an image, you see it is made of tiny squares. These squares are called pixels.",
+"In a black-and-white image, each pixel can be written as 0 or 1, for example white = 0 and black = 1.",
+"In a color image, each pixel's color is made from three kinds of light: red (R), green (G) and blue (B). Each is a number from 0 to 255.",
+"A phone photo is made of millions of these pixels."
+],
+"tool": [
+"pixel",
+"color"
+]
+},
+{
+"h": "Hexadecimal and color codes",
+"p": [
+"Binary uses only 0 and 1, so numbers get very long. That is why hexadecimal is often used. It has 16 symbols: 0–9 and A–F (10–15).",
+"Four binary digits (4 bits) make exactly one hexadecimal digit. So one byte (8 bits) can be written with two hexadecimal digits. Example: 255 = 11111111 = FF.",
+"Color codes on the web, like #FF4F00, write red, green and blue as two hexadecimal digits each: FF = 255, 4F = 79, 00 = 0.",
+"Choose a photo in the tool below to see the color of each pixel in decimal, binary and hexadecimal."
+],
+"tool": [
+"photo"
+]
+},
+{
+"h": "Sound is numbers too",
+"p": [
+"Sound is a vibration of the air: a wave.",
+"We measure the height of this wave again and again at very short intervals and record it as numbers. This is called sampling.",
+"A music CD, for example, measures 44,100 times every second. The more often we measure, the closer we get to the original sound."
+],
+"tool": [
+"wave"
+]
+},
+{
+"h": "The link to AI",
+"p": [
+"AI turns text, images and sound into numbers before it learns.",
+"An AI that recognizes images learns patterns in pixel numbers. An AI that writes text (an LLM) splits text into small pieces called tokens, turns them into numbers, and then calculates.",
+"\"Inside a computer, everything is numbers.\" We will use this idea in every class from now on."
+]
+}
+],
+"summary": [
+"Computers represent information with 0 and 1 (bits)",
+"8 bits = 1 byte (256 patterns)",
+"Binary writes numbers as a mix of cards worth 1, 2, 4, 8…",
+"Every character has a number (character codes, Unicode)",
+"There are also country-specific encodings (Shift_JIS, GBK…). Different saved and read encodings cause mojibake",
+"Images are made of pixels; colors are numbers for red, green and blue",
+"One hexadecimal digit = 4 bits. A color code #RRGGBB is red, green and blue in hexadecimal",
+"Sound becomes numbers by measuring the wave many times",
+"AI also turns everything into numbers before it calculates"
+],
+"quiz": [
+{
+"q": "How many patterns can one bit show?",
+"o": [
+"1",
+"2",
+"8",
+"256"
+],
+"a": 1,
+"e": "A bit is either 0 or 1, so it shows 2 patterns."
+},
+{
+"q": "What is the binary number 1010 in decimal?",
+"o": [
+"10",
+"5",
+"12",
+"1010"
+],
+"a": 0,
+"e": "8 + 2 = 10."
+},
+{
+"q": "What do we call 8 bits together?",
+"o": [
+"1 pixel",
+"1 byte",
+"1 token",
+"1 kilo"
+],
+"a": 1,
+"e": "8 bits = 1 byte. One byte can show 256 patterns."
+},
+{
+"q": "How is the color of a pixel in a color image represented?",
+"o": [
+"A character code",
+"The pitch of a sound",
+"The strength of red, green and blue",
+"The file name"
+],
+"a": 2,
+"e": "Red (R), green (G) and blue (B) are each a number from 0 to 255."
+},
+{
+"q": "What does AI do first when it learns from text or images?",
+"o": [
+"Translate them into English",
+"Turn them into numbers",
+"Remove the colors",
+"Print them on paper"
+],
+"a": 1,
+"e": "AI can only calculate with numbers, so it first turns text and images into numbers."
+},
+{
+"q": "What happens when text saved in one encoding is read with another?",
+"o": [
+"Mojibake (garbled text)",
+"Hallucination",
+"Overfitting",
+"Sampling"
+],
+"a": 0,
+"e": "When the encodings differ, the same bytes are shown as different characters."
+},
+{
+"q": "What is hexadecimal FF in decimal?",
+"o": [
+"15",
+"16",
+"255",
+"100"
+],
+"a": 2,
+"e": "F = 15, so 15 × 16 + 15 = 255. In binary it is 11111111."
+}
+],
+"next": "December 2 (Class 7): Algorithms and the big picture of AI",
+"more": [
+[
+"https://classic.csunplugged.org/activities/binary-numbers/",
+"CS Unplugged: Binary Numbers",
+"An activity for learning binary with cards"
+],
+[
+"https://www.elementsofai.com/",
+"Elements of AI",
+"A free online course on the big picture of AI, with no math"
+]
+],
+"slides": [
+{
+"kind": "title"
+},
+{
+"t": "Today's goals",
+"b": [
+"Inside a computer: only 0 and 1",
+"Write numbers in binary",
+"Text, images and sound become numbers"
+]
+},
+{
+"t": "Inside a computer, everything is numbers",
+"b": [
+"Photos, messages, music…",
+"Only two digits: 0 and 1",
+"AI can only calculate with numbers"
+]
+},
+{
+"t": "Bits",
+"b": [
+"Electricity on = 1, off = 0",
+"One \"0 or 1\" = 1 bit",
+"Each extra bit doubles the patterns"
+],
+"big": "1 bit → 2   2 bits → 4   8 bits → 256"
+},
+{
+"t": "Binary cards",
+"b": [
+"From the right: 1, 2, 4, 8, 16…",
+"Add the cards showing 1",
+"13 = 8 + 4 + 1 → 1101"
+],
+"tool": "binary"
+},
+{
+"t": "Text is numbers too",
+"b": [
+"Every character has a number",
+"A → 65, あ → 12354",
+"Numbers for every writing system: Unicode"
+],
+"tool": "text"
+},
+{
+"t": "More than one character encoding",
+"b": [
+"ASCII: for English, 128 characters",
+"Encodings by country: Shift_JIS, GBK, Big5…",
+"あ = 82 A0 (Shift_JIS), E3 81 82 (UTF-8)"
+],
+"tool": "enc"
+},
+{
+"t": "Mojibake (garbled text)",
+"b": [
+"Saved encoding ≠ read encoding",
+"The same bytes look like other characters",
+"The fix: one shared Unicode (UTF-8)"
+],
+"tool": "moji"
+},
+{
+"t": "Images are numbers too",
+"b": [
+"Image = many pixels",
+"White = 0, black = 1"
+],
+"tool": "pixel"
+},
+{
+"t": "Colors are numbers too",
+"b": [
+"Three kinds of light: red, green, blue (RGB)",
+"Each from 0 to 255"
+],
+"tool": "color"
+},
+{
+"t": "Hexadecimal and color codes",
+"b": [
+"16 symbols: 0–9 and A–F",
+"4 bits = 1 hexadecimal digit",
+"#FF4F00 = red 255, green 79, blue 0"
+],
+"tool": "photo"
+},
+{
+"t": "Sound is numbers too",
+"b": [
+"Sound = a wave in the air",
+"Measure its height again and again",
+"A CD: 44,100 times per second"
+],
+"tool": "wave"
+},
+{
+"t": "The link to AI",
+"b": [
+"AI first turns everything into numbers",
+"Image AI: learns pixel numbers",
+"Text AI (LLM): turns text into token numbers"
+]
+},
+{
+"t": "Summary",
+"b": [
+"Everything is 0 and 1 (bits)",
+"8 bits = 1 byte",
+"Text, images and sound are numbers",
+"AI calculates with numbers"
+]
+},
+{
+"t": "Check quiz",
+"b": [
+"The quiz is at the end of the reading page",
+"Next: Algorithms and the big picture of AI"
+]
+}
+]
+}
