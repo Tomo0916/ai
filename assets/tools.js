@@ -271,7 +271,52 @@ window.Tools = (function () {
     sample();
   }
 
-  const all = { binary, text, pixel, color, wave, enc, moji, photo };
+  /* ---------- horse racing: practice race card (fictional) ---------- */
+  function card(el, u) {
+    const H = [
+      [1, 1, "サクラノカゼ", "牡4", 57, "山本 一郎", "486(+2)", "1着 G3"],
+      [2, 2, "ブルーオーシャン", "牝5", 55, "佐藤 花子", "452(-4)", "5着 G2"],
+      [3, 3, "テンクウノオウ", "牡6", 58, "鈴木 健", "502(+10)", "12着 G1"],
+      [4, 4, "ミドリノヒカリ", "牝4", 55, "田中 美咲", "468(0)", "2着 3勝クラス"],
+      [5, 5, "ハヤテマル", "牡3", 56, "高橋 翔", "478(-2)", "1着 3勝クラス"],
+      [6, 6, "ゴールドラッシュ", "セ7", 57, "伊藤 大地", "510(+6)", "8着 G3"],
+      [7, 7, "ユメミルソラ", "牝3", 54, "渡辺 葵", "440(-8)", "3着 G2"],
+      [8, 8, "アカツキボーイ", "牡5", 57, "中村 蓮", "494(+4)", "4着 オープン"]
+    ];
+    const waku = ["#ffffff", "#222222", "#e53935", "#1e5bd8", "#f2c200", "#2e9d3a", "#f57c00", "#ec6fa8"];
+    const wtext = ["#111", "#fff", "#fff", "#fff", "#111", "#fff", "#fff", "#111"];
+    el.innerHTML = `<h3>${rb(u.cardTitle)}</h3><p class="help">${rb(u.cardHelp)}</p>
+      <div class="racehead"><b>${rb(u.cardRace)}</b><span>${rb(u.cardCond)}</span></div>
+      <div style="overflow-x:auto"><table class="chars racecard"><thead><tr>${["cardW", "cardN", "cardName", "cardSexAge", "cardKin", "cardJockey", "cardWeight", "cardLast"].map(k => `<th>${rb(u[k])}</th>`).join("")}</tr></thead>
+      <tbody>${H.map(h => `<tr><td><span class="waku" style="background:${waku[h[0] - 1]};color:${wtext[h[0] - 1]}">${h[0]}</span></td><td>${h[1]}</td><td class="hn">${esc(h[2])}</td><td>${esc(h[3])}</td><td>${h[4]}</td><td>${esc(h[5])}</td><td>${esc(h[6])}</td><td>${esc(h[7])}</td></tr>`).join("")}</tbody></table></div>
+      <p class="note">${rb(u.cardNote)}</p>`;
+  }
+
+  /* ---------- parimutuel odds: money in, odds out ---------- */
+  function odds(el, u) {
+    const names = ["サクラノカゼ", "ブルーオーシャン", "テンクウノオウ", "ミドリノヒカリ", "ハヤテマル", "ゴールドラッシュ"];
+    const bet = [40, 15, 5, 20, 30, 3];
+    el.innerHTML = `<h3>${rb(u.oddsTitle)}</h3><p class="help">${rb(u.oddsHelp)}</p>
+      <div class="oddsrows">${names.map((n, i) => `<div class="orow"><span class="on">${i + 1}. ${esc(n)}</span><input type="range" min="1" max="60" value="${bet[i]}" data-i="${i}" aria-label="${esc(n)}"><span class="ob"></span><span class="oo"></span><span class="op"></span></div>`).join("")}</div>
+      <div class="osum"></div>`;
+    const rows = [...el.querySelectorAll(".orow")];
+    const draw = () => {
+      const total = bet.reduce((a, b) => a + b, 0), pool = total * 0.8;
+      const od = bet.map(b => Math.max(1, Math.floor(pool / b * 10) / 10));
+      const order = od.map((o, i) => [o, i]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+      rows.forEach((r, i) => {
+        r.querySelector(".ob").innerHTML = rb(fill(u.oddsMan, { n: bet[i] }));
+        r.querySelector(".oo").textContent = od[i].toFixed(1) + (u.oddsX || "");
+        r.querySelector(".op").innerHTML = rb(fill(u.oddsPop, { n: order.indexOf(i) + 1 }));
+        r.classList.toggle("fav", order[0] === i);
+      });
+      el.querySelector(".osum").innerHTML = rb(fill(u.oddsSum, { t: total, p: Math.round(pool * 10) / 10 }));
+    };
+    el.querySelectorAll("input").forEach(inp => inp.addEventListener("input", () => { bet[+inp.dataset.i] = +inp.value; draw(); }));
+    draw();
+  }
+
+  const all = { binary, text, pixel, color, wave, enc, moji, photo, card, odds };
   function mount(root, u) { root.querySelectorAll("[data-tool]").forEach(el => { const t = all[el.dataset.tool]; if (t) { el.classList.add("tool"); t(el, u); } }); }
   return { mount };
 })();

@@ -98,3 +98,17 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--sub)}
 .pxinfo table{width:100%}.pxinfo th{white-space:nowrap;padding-right:6px;font-size:13px;color:var(--sub);font-weight:500}.pxinfo td{white-space:nowrap;padding:6px 4px}.pxinfo code{font-size:13px}
 .ch{display:inline-block;width:1.4em;text-align:center;border-radius:4px;font-weight:700;font-size:12px;color:#fff}
 .ch0{background:#d62828}.ch1{background:#2a9d3a}.ch2{background:#1e5bd8}
+/* horse racing */
+.racehead{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:6px 0}
+.racehead span{color:var(--sub);font-size:14px}
+.racecard td,.racecard th{white-space:nowrap}
+.racecard td.hn{font-weight:700}
+.waku{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:4px;border:1px solid #999;font-weight:700;font-size:14px}
+.oddsrows{display:grid;gap:6px}
+.orow{display:grid;grid-template-columns:minmax(0,9em) minmax(0,1fr) 4.5em 4.5em 4.8em;gap:8px;align-items:center;background:var(--card);border-radius:10px;padding:6px 10px;font-size:15px}
+.orow .on{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.orow .ob,.orow .op{color:var(--sub);font-size:13px;text-align:right;white-space:nowrap}
+.orow .oo{font-weight:700;font-size:20px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.orow.fav{outline:2px solid var(--acc)}
+.osum{margin-top:10px;font-size:15px}
+@media(max-width:560px){.orow{grid-template-columns:minmax(0,1fr) 5.4em 4.6em;}.orow input{grid-column:1/-1;grid-row:2}.orow .ob{display:none}}
