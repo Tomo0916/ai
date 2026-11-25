@@ -51,6 +51,7 @@
 "waveHelp": "La ligne grise est l'onde sonore d'origine ; les points orange sont les nombres mesurés. Plus on mesure souvent, plus on se rapproche de l'onde d'origine.",
 "waveN": "Mesures par onde",
 "mapLink": "Voir la carte d'apprentissage",
+"certs": "Guide des certifications : laquelle viser ?",
 "encTitle": "Comparer les codages de caractères",
 "encHelp": "Tapez un caractère ou touchez un bouton. Voyez combien d'octets il occupe, et quels 0 et 1, dans chaque codage.",
 "encName": "Codage",

@@ -51,6 +51,7 @@
 "waveHelp": "Đường màu xám là sóng âm gốc; các chấm cam là các con số đo được. Đo càng nhiều lần thì càng gần với sóng gốc.",
 "waveN": "Số lần đo mỗi sóng",
 "mapLink": "Xem bản đồ học tập",
+"certs": "Hướng dẫn chứng chỉ: nên nhắm đến cái nào?",
 "encTitle": "So sánh các bảng mã ký tự",
 "encHelp": "Gõ một ký tự hoặc chạm vào nút. Xem ký tự đó chiếm bao nhiêu byte và gồm những số 0, 1 nào trong từng bảng mã.",
 "encName": "Bảng mã",

@@ -27,7 +27,7 @@
  <div class="top"><span class="home" data-t="siteTitle"></span><label class="langsel"><span data-t="lang"></span><select id="lang"></select></label></div>
  <h1 data-t="siteTitle"></h1>
  <p data-t="siteLead"></p>
- <p><a class="btn" href="map.html" id="maplink" data-t="mapLink"></a></p>
+ <p style="display:flex;flex-wrap:wrap;gap:8px"><a class="btn" href="map.html" id="maplink" data-t="mapLink"></a><a class="btn" id="certlink" href="https://tomo0916.github.io/ds/certs/">🎓 <span id="certtxt"></span></a></p>
  <ol class="route" id="route"></ol>
  <footer data-t="footer"></footer>
 </div>
@@ -39,7 +39,7 @@ const { rb, esc, fill, detect, loadAll, langSelect, apply, fillText, locale } = 
 let lang = detect();
 async function render() {
   const [U] = await loadAll(["assets/i18n"], lang);
-  apply(lang); fillText(U.ui); document.getElementById("maplink").href=`map.html?lang=${lang}`; document.title = AI.plain(U.ui.siteTitle);
+  apply(lang); fillText(U.ui); document.getElementById("maplink").href=`map.html?lang=${lang}`; document.getElementById("certtxt").innerHTML = rb(U.ui.certs); document.getElementById("certlink").href = `https://tomo0916.github.io/ds/certs/?lang=${lang}`; document.title = AI.plain(U.ui.siteTitle);
   const items = [];
   SCHEDULE.forEach((s, j) => {
     if (s.breakBefore) items.push(`<li class="brk"><span class="dot"></span><div class="st">${rb(U.ui.winterBreak)}</div></li>`);

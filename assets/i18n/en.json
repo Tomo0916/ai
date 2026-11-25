@@ -51,6 +51,7 @@
 "waveHelp": "The gray line is the original sound wave; the orange dots are the measured numbers. Measure more often and you get closer to the original wave.",
 "waveN": "Measurements per wave",
 "mapLink": "View the learning map",
+"certs": "Certification guide: which one to aim for?",
 "encTitle": "Compare character encodings",
 "encHelp": "Type a character or tap a button. See how many bytes it takes, and which 0s and 1s, in each encoding.",
 "encName": "Encoding",
